@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 cron.schedule("0 */2 * * *", async () => {
+  console.log("2 Hours");
   mongoose.connection.db.collection("news").deleteMany({}, (error, result) => {
     if (error) {
       console.error("Error deleting documents:", error);
@@ -51,8 +52,6 @@ cron.schedule("0 */2 * * *", async () => {
 });
 
 const addDataToDb = async (newsData) => {
-  console.log(newsData);
-
   for (let i = 0; i < newsData.length; i++) {
     const element = newsData[i];
     const news = new News({
