@@ -69,20 +69,24 @@ const addDataToDb = async (newsData) => {
 };
 
 app.get("/getNews", async (req, res) => {
-  let limit = req.query.limit;
-  let page = req.query.page;
+  try {
+    let limit = req.query.limit;
+    let page = req.query.page;
 
-  if (limit <= 0) {
-    res.json({ news: null, err: "limit can't be less than 1" });
-  }
-  if (page < 1) {
-    res.json({ news: null, err: "Page can't be less than 1" });
-  }
+    if (limit <= 0) {
+      res.json({ news: null, err: "limit can't be less than 1" });
+    }
+    if (page < 1) {
+      res.json({ news: null, err: "Page can't be less than 1" });
+    }
 
-  const news = await News.find({})
-    .skip(page * limit)
-    .limit(limit);
-  res.json({ news });
+    const news = await News.find({})
+      .skip(page * limit)
+      .limit(limit);
+    res.json({ news });
+  } catch (err) {
+    res.json({ err: err.message, news: null });
+  }
 });
 
 // user
