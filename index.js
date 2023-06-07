@@ -1,13 +1,18 @@
-import express from "express";
-import fetch from "node-fetch";
-import cron from "node-cron";
-import News from "./db/news.js";
-import "./db/conn.js";
-import mongoose from "mongoose";
+// import express from "express";
+// import fetch from "node-fetch";
+// import cron from "node-cron";
+// import News from "./db/news.js";
+// import "./db/conn.js";
+// import mongoose from "mongoose";
 
-// const express = require("express");
+const express = require("express");
 // const fetch = require("node-fetch");
-// const cron = require("node-cron");
+const cron = require("node-cron");
+const News = require("./db/news");
+require("./db/conn.js");
+const mongoose = require("mongoose");
+const fetch = require("isomorphic-fetch");
+
 const app = express();
 
 let nextPage = "";
@@ -18,7 +23,8 @@ app.get("/", (req, res) => {
 });
 
 cron.schedule("0 */2 * * *", async () => {
-  console.log("2 Hours");
+  // cron.schedule("*/40 * * * * *", async () => {
+  console.log("5 Sec");
   mongoose.connection.db.collection("news").deleteMany({}, (error, result) => {
     if (error) {
       console.error("Error deleting documents:", error);
@@ -64,6 +70,7 @@ const addDataToDb = async (newsData) => {
       image_url: element.image_url,
     });
     const savedNews = await news.save();
+    console.log(savedNews);
   }
 };
 
