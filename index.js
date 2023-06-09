@@ -12,11 +12,14 @@ const News = require("./db/news");
 require("./db/conn.js");
 const mongoose = require("mongoose");
 const fetch = require("isomorphic-fetch");
+const cors = require("cors");
 
 const app = express();
 
 let nextPage = "";
 let newsData = [];
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello world!!");
