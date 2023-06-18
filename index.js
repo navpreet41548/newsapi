@@ -158,7 +158,8 @@ app.get("/", (req, res) => {
   res.send("Hello world!!");
 });
 
-cron.schedule("*/50 * * * * *", async () => {
+// cron.schedule("*/50 * * * * *", async () => {
+cron.schedule("0 */6 * * * *", async () => {
   console.log("5 Sec");
   mongoose.connection.db.collection("news").deleteMany({}, (error, result) => {
     if (error) {
