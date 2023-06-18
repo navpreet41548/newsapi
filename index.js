@@ -5,14 +5,14 @@
 // // import "./db/conn.js";
 // // import mongoose from "mongoose";
 
-// const express = require("express");
-// // const fetch = require("node-fetch");
-// const cron = require("node-cron");
-// const News = require("./db/news");
-// require("./db/conn.js");
-// const mongoose = require("mongoose");
-// const fetch = require("isomorphic-fetch");
-// const cors = require("cors");
+const express = require("express");
+// const fetch = require("node-fetch");
+const cron = require("node-cron");
+const News = require("./db/news");
+require("./db/conn.js");
+const mongoose = require("mongoose");
+const fetch = require("isomorphic-fetch");
+const cors = require("cors");
 
 // const app = express();
 
@@ -139,13 +139,13 @@
 //   console.log("Server is running");
 // });
 
-const express = require("express");
-const cron = require("node-cron");
-const News = require("./db/news");
-require("./db/conn.js");
-const mongoose = require("mongoose");
-const fetch = require("node-fetch");
-const cors = require("cors");
+// const express = require("express");
+// const cron = require("node-cron");
+// const News = require("./db/news");
+// require("./db/conn.js");
+// const mongoose = require("mongoose");
+// const fetch = require("node-fetch");
+// const cors = require("cors");
 
 const app = express();
 
