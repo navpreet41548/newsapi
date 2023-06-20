@@ -158,7 +158,7 @@ app.get("/", (req, res) => {
   res.send("Hello world!!");
 });
 
-// cron.schedule("*/50 * * * * *", async () => {
+// cron.schedule("*/60 * * * * *", async () => {
 cron.schedule("0 */6 * * * *", async () => {
   console.log("5 Sec");
   mongoose.connection.db.collection("news").deleteMany({}, (error, result) => {
@@ -170,7 +170,7 @@ cron.schedule("0 */6 * * * *", async () => {
   });
 
   const ress = await fetch(
-    "https://newsdata.io/api/1/news?apikey=pub_2256356c6bcdfe6fd08b0e0c43e96530ba7a2&q=technology&language=en&category=science,technology"
+    "https://newsdata.io/api/1/news?apikey=pub_2256356c6bcdfe6fd08b0e0c43e96530ba7a2&q=computer&language=en&category=technology"
   );
   const data = await ress.json();
   newsData.push(data);
@@ -179,7 +179,7 @@ cron.schedule("0 */6 * * * *", async () => {
   let n = 1;
   while (n <= 6) {
     const nextPageData = await fetch(
-      `https://newsdata.io/api/1/news?apikey=pub_2256356c6bcdfe6fd08b0e0c43e96530ba7a2&q=technology&language=en&category=science,technology&page=${nextPage}`
+      `https://newsdata.io/api/1/news?apikey=pub_2256356c6bcdfe6fd08b0e0c43e96530ba7a2&q=computer&language=en&category=technology&page=${nextPage}`
     );
     const newData = await nextPageData.json();
     nextPage = newData.nextPage;
